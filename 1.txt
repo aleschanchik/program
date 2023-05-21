@@ -86,18 +86,32 @@ static void Main(string[] args)
 Дан целочисленный массив размера N. Проверить, чередуются ли в нем четные
 и нечетные числа. Если чередуются, то вывести 0, если нет, то вывести
 порядковый номер первого элемента, нарушающего закономерность.
-int[] mass = { 1, 2, 4, 4, 5, 6, 7, 8 };
-for (int i = 1; i < mass.Length; i++)
+Random random = new Random();
+int n = 10; // размер массива
+int[] arr = new int[n]; // инициализация массива
+for (int i = 0; i < n; i++)
 {
-    if ((mass[i] % 2 == 0 && mass[i - 1] % 2 == 0) || (mass[i] % 2 != 0 && mass[i - 1] % 2 != 0))
-    {
-        Console.WriteLine(i);
-        break;
-    }
-    if (i == (mass.Length - 1))
-    { 
-        Console.WriteLine(0);
-    } 
+arr[i] = random.Next(1, 10); // заполнение массива случайными числами от 1 до 10
+Console.Write(arr[i] + " ");
+}
+
+int firstViolationIndex = -1; // индекс первого нарушения закономерности
+for (int i = 1; i < n; i++)
+{
+if ((arr[i - 1] % 2 == 0 && arr[i] % 2 == 0) || (arr[i - 1] % 2 != 0 && arr[i] % 2 != 0))
+{
+firstViolationIndex = i;
+break;
+}
+}
+
+if (firstViolationIndex == -1)
+{
+Console.WriteLine("\nЧередуются четные и нечетные числа");
+}
+else
+{
+Console.WriteLine($"\nЗакономерность нарушается на элементе с индексом {firstViolationIndex}");
 }
 3. Методы сортировки
 Пример задания:Создать матрицу вещественных элементов А(n,n) и выполнить сортировку элементов, расположенных под главной диагональю методом «пузырька».
